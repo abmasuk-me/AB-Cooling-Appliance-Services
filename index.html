@@ -1,0 +1,2962 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arctic Cool – HVAC & Electrical Services | Saudi Arabia</title>
+<meta name="description" content="Professional AC repair, installation, gas refill, and electrical services across Saudi Arabia. 24/7 emergency service. Fast, certified, affordable.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================
+   CSS VARIABLES & RESET
+============================ */
+:root {
+  --ice: #00d4ff;
+  --ice-dim: #0099bb;
+  --fire: #ff6b1a;
+  --bg-deep: #04080f;
+  --bg-mid: #070d18;
+  --bg-card: rgba(255,255,255,0.035);
+  --bg-card-hover: rgba(0,212,255,0.07);
+  --border: rgba(0,212,255,0.12);
+  --border-hover: rgba(0,212,255,0.35);
+  --text-primary: #f0f8ff;
+  --text-secondary: rgba(240,248,255,0.6);
+  --text-muted: rgba(240,248,255,0.35);
+  --font-display: 'Bebas Neue', 'Rajdhani', sans-serif;
+  --font-body: 'Rajdhani', 'IBM Plex Sans Arabic', sans-serif;
+  --font-arabic: 'IBM Plex Sans Arabic', 'Rajdhani', sans-serif;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --glow: 0 0 30px rgba(0,212,255,0.2);
+  --glow-strong: 0 0 60px rgba(0,212,255,0.35);
+  --transition: 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+
+*,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+body {
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+[lang="ar"] body, body.rtl {
+  font-family: var(--font-arabic);
+  direction: rtl;
+}
+
+.en-content { display: block; }
+.ar-content { display: none; }
+body.rtl .en-content { display: none; }
+body.rtl .ar-content { display: block; }
+
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+/* ============================
+   SCROLLBAR
+============================ */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-deep); }
+::-webkit-scrollbar-thumb { background: var(--ice-dim); border-radius: 3px; }
+
+/* ============================
+   PRELOADER
+============================ */
+#preloader {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-deep);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+#preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+
+.preloader-inner {
+  position: relative;
+  width: 160px;
+  height: 160px;
+}
+
+.gear-outer, .gear-inner {
+  position: absolute;
+  border-radius: 50%;
+  border: 3px solid transparent;
+}
+
+.gear-outer {
+  inset: 0;
+  border-top-color: var(--ice);
+  border-right-color: rgba(0,212,255,0.3);
+  animation: spinCW 1.8s linear infinite;
+  box-shadow: 0 0 20px rgba(0,212,255,0.4);
+}
+
+.gear-mid {
+  position: absolute;
+  inset: 18px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: var(--fire);
+  border-left-color: rgba(255,107,26,0.3);
+  animation: spinCCW 1.2s linear infinite;
+  box-shadow: 0 0 15px rgba(255,107,26,0.3);
+}
+
+.gear-inner {
+  inset: 38px;
+  border-top-color: var(--ice);
+  border-bottom-color: rgba(0,212,255,0.2);
+  animation: spinCW 0.8s linear infinite;
+}
+
+.gear-center {
+  position: absolute;
+  inset: 58px;
+  background: radial-gradient(circle, rgba(0,212,255,0.2), transparent);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.fan-blade {
+  position: absolute;
+  width: 12px;
+  height: 40px;
+  background: linear-gradient(to top, var(--ice), transparent);
+  border-radius: 6px;
+  transform-origin: bottom center;
+  left: 50%;
+  bottom: 50%;
+  margin-left: -6px;
+}
+
+.fan-wrap {
+  position: absolute;
+  inset: 48px;
+  animation: spinCW 0.6s linear infinite;
+}
+
+.fan-blade:nth-child(1) { transform: rotate(0deg); }
+.fan-blade:nth-child(2) { transform: rotate(72deg); }
+.fan-blade:nth-child(3) { transform: rotate(144deg); }
+.fan-blade:nth-child(4) { transform: rotate(216deg); }
+.fan-blade:nth-child(5) { transform: rotate(288deg); }
+
+@keyframes spinCW { to { transform: rotate(360deg); } }
+@keyframes spinCCW { to { transform: rotate(-360deg); } }
+@keyframes pulse { 0%,100%{opacity:0.6;transform:scale(1)} 50%{opacity:1;transform:scale(1.15)} }
+
+.preloader-text {
+  margin-top: 32px;
+  text-align: center;
+}
+.preloader-logo {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  letter-spacing: 4px;
+  color: var(--ice);
+  text-shadow: 0 0 30px rgba(0,212,255,0.6);
+}
+.preloader-sub {
+  font-size: 0.8rem;
+  letter-spacing: 6px;
+  color: var(--text-muted);
+  margin-top: 6px;
+  text-transform: uppercase;
+}
+
+.preloader-bar {
+  width: 160px;
+  height: 2px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 2px;
+  margin-top: 20px;
+  overflow: hidden;
+}
+.preloader-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--ice), var(--fire));
+  border-radius: 2px;
+  animation: loadBar 2.2s ease forwards;
+  box-shadow: 0 0 10px rgba(0,212,255,0.8);
+}
+@keyframes loadBar { from{width:0} to{width:100%} }
+
+/* ============================
+   STICKY HEADER
+============================ */
+#header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  padding: 0 5%;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(4,8,15,0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  transition: background var(--transition);
+}
+#header.scrolled {
+  background: rgba(4,8,15,0.97);
+  box-shadow: 0 4px 30px rgba(0,0,0,0.4);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+.logo-icon {
+  width: 42px;
+  height: 42px;
+  background: linear-gradient(135deg, var(--ice), var(--ice-dim));
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  box-shadow: var(--glow);
+  animation: logoFloat 4s ease-in-out infinite;
+}
+@keyframes logoFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)} }
+.logo-text {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  letter-spacing: 2px;
+  color: var(--text-primary);
+}
+.logo-text span { color: var(--ice); }
+
+nav { display: flex; align-items: center; gap: 8px; }
+.nav-link {
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+  transition: all var(--transition);
+  text-transform: uppercase;
+}
+.nav-link:hover { color: var(--ice); background: rgba(0,212,255,0.08); }
+
+.header-actions { display: flex; align-items: center; gap: 10px; }
+
+.lang-toggle {
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--ice);
+  background: transparent;
+  transition: all var(--transition);
+  cursor: pointer;
+  font-family: var(--font-body);
+}
+.lang-toggle:hover { background: rgba(0,212,255,0.1); border-color: var(--ice); }
+
+.btn-call {
+  padding: 10px 22px;
+  background: linear-gradient(135deg, var(--ice), var(--ice-dim));
+  border-radius: 25px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--bg-deep);
+  transition: all var(--transition);
+  box-shadow: 0 4px 20px rgba(0,212,255,0.3);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-call:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,212,255,0.5); }
+
+.hamburger { display: none; flex-direction: column; gap: 5px; padding: 8px; cursor: pointer; }
+.hamburger span { display: block; width: 24px; height: 2px; background: var(--text-primary); border-radius: 2px; transition: all 0.3s; }
+.hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+
+/* Mobile nav */
+.mobile-nav {
+  display: none;
+  position: fixed;
+  top: 72px; left: 0; right: 0;
+  background: rgba(4,8,15,0.98);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 20px 5%;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 999;
+}
+.mobile-nav.open { display: flex; }
+.mobile-nav .nav-link { font-size: 1rem; padding: 12px 16px; }
+
+/* ============================
+   HERO SECTION
+============================ */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 100px 5% 60px;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 60% 40%, rgba(0,212,255,0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 50% at 20% 80%, rgba(255,107,26,0.04) 0%, transparent 60%),
+    var(--bg-deep);
+}
+
+.hero-particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--ice);
+  opacity: 0;
+  animation: particleDrift var(--dur, 8s) var(--delay, 0s) ease-in-out infinite;
+}
+@keyframes particleDrift {
+  0% { opacity: 0; transform: translateY(100vh) scale(0); }
+  10% { opacity: var(--op, 0.4); }
+  90% { opacity: var(--op, 0.4); }
+  100% { opacity: 0; transform: translateY(-20vh) scale(1); }
+}
+
+.hero-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* 3D Logo Side */
+.hero-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-3d-logo {
+  position: relative;
+  width: 340px;
+  height: 340px;
+}
+
+.logo-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(0,212,255,0.2);
+}
+.logo-ring:nth-child(1) {
+  inset: 0;
+  animation: ringRotate 20s linear infinite;
+  border-color: rgba(0,212,255,0.15);
+  border-top-color: var(--ice);
+  box-shadow: inset 0 0 40px rgba(0,212,255,0.05);
+}
+.logo-ring:nth-child(2) {
+  inset: 28px;
+  animation: ringRotate 15s linear infinite reverse;
+  border-color: rgba(255,107,26,0.1);
+  border-right-color: rgba(255,107,26,0.4);
+}
+.logo-ring:nth-child(3) {
+  inset: 56px;
+  animation: ringRotate 10s linear infinite;
+  border-color: rgba(0,212,255,0.08);
+  border-bottom-color: rgba(0,212,255,0.5);
+}
+@keyframes ringRotate { to { transform: rotate(360deg); } }
+
+.logo-core {
+  position: absolute;
+  inset: 84px;
+  background: radial-gradient(circle at 40% 35%, rgba(0,212,255,0.15), rgba(0,50,80,0.4), rgba(4,8,15,0.9));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  box-shadow: 0 0 60px rgba(0,212,255,0.15), inset 0 0 30px rgba(0,212,255,0.08);
+  border: 1px solid rgba(0,212,255,0.2);
+  animation: coreFloat 5s ease-in-out infinite;
+}
+@keyframes coreFloat { 0%,100%{transform:translateY(0) scale(1)} 50%{transform:translateY(-10px) scale(1.02)} }
+
+.logo-core-icon { font-size: 3rem; line-height: 1; }
+.logo-core-name {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  letter-spacing: 3px;
+  color: var(--ice);
+  text-shadow: 0 0 20px rgba(0,212,255,0.8);
+  margin-top: 4px;
+}
+.logo-core-tagline {
+  font-size: 0.6rem;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+/* Orbit dots */
+.orbit-dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--ice);
+  box-shadow: 0 0 12px var(--ice);
+}
+.orbit-dot:nth-child(5) {
+  top: 4px; left: 50%;
+  animation: orbitA 3s ease-in-out infinite;
+  background: var(--ice);
+}
+.orbit-dot:nth-child(6) {
+  bottom: 4px; left: 50%;
+  animation: orbitA 3s 1.5s ease-in-out infinite;
+  background: var(--fire);
+  box-shadow: 0 0 12px var(--fire);
+}
+@keyframes orbitA { 0%,100%{opacity:0.4;transform:scale(0.8)} 50%{opacity:1;transform:scale(1.2)} }
+
+/* Stats orbit */
+.hero-stat-badge {
+  position: absolute;
+  background: rgba(7,13,24,0.9);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 16px;
+  backdrop-filter: blur(10px);
+  box-shadow: var(--glow);
+}
+.hero-stat-badge:nth-child(7) {
+  top: 20px; right: -10px;
+  animation: badgeFloat 4s ease-in-out infinite;
+}
+.hero-stat-badge:nth-child(8) {
+  bottom: 40px; left: -20px;
+  animation: badgeFloat 4s 2s ease-in-out infinite;
+}
+.badge-num {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--ice);
+  line-height: 1;
+}
+.badge-label {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+@keyframes badgeFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+
+/* Hero text side */
+.hero-text {
+  padding: 20px 0;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border: 1px solid rgba(0,212,255,0.3);
+  border-radius: 20px;
+  background: rgba(0,212,255,0.06);
+  font-size: 0.78rem;
+  letter-spacing: 2px;
+  color: var(--ice);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.hero-badge-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--ice);
+  box-shadow: 0 0 8px var(--ice);
+  animation: blinkDot 1.5s ease-in-out infinite;
+}
+@keyframes blinkDot { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+.hero-headline {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 5vw, 4.8rem);
+  line-height: 1.05;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+  color: var(--text-primary);
+}
+.hero-headline .accent { color: var(--ice); }
+.hero-headline .fire { color: var(--fire); }
+
+.typing-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  min-height: 2rem;
+}
+.typing-prefix {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+.typing-text {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--ice);
+  letter-spacing: 1px;
+}
+.typing-cursor {
+  display: inline-block;
+  width: 3px;
+  height: 1.4em;
+  background: var(--ice);
+  margin-left: 3px;
+  animation: cursorBlink 0.8s step-end infinite;
+  vertical-align: middle;
+}
+@keyframes cursorBlink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+.hero-desc {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  max-width: 480px;
+  margin-bottom: 36px;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.btn-primary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 32px;
+  background: linear-gradient(135deg, var(--ice) 0%, #0099cc 100%);
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--bg-deep);
+  box-shadow: 0 6px 30px rgba(0,212,255,0.35);
+  transition: all var(--transition);
+  font-family: var(--font-body);
+}
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,212,255,0.55); }
+
+.btn-whatsapp {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 32px;
+  background: transparent;
+  border: 2px solid #25d366;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #25d366;
+  transition: all var(--transition);
+  font-family: var(--font-body);
+}
+.btn-whatsapp:hover { background: rgba(37,211,102,0.1); transform: translateY(-3px); box-shadow: 0 8px 25px rgba(37,211,102,0.25); }
+
+.hero-contact-strip {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
+}
+.contact-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  transition: color var(--transition);
+}
+.contact-chip:hover { color: var(--ice); }
+.contact-chip .icon { font-size: 1.1rem; }
+
+/* Emergency banner */
+.emergency-banner {
+  background: linear-gradient(90deg, rgba(255,107,26,0.15), rgba(255,107,26,0.08));
+  border: 1px solid rgba(255,107,26,0.3);
+  border-radius: 12px;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 28px;
+}
+.emg-icon { font-size: 1.6rem; animation: emgPulse 1s ease-in-out infinite; }
+@keyframes emgPulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.2)} }
+.emg-text strong { color: var(--fire); font-size: 0.95rem; display: block; }
+.emg-text span { font-size: 0.8rem; color: var(--text-muted); }
+
+/* ============================
+   SECTION COMMON
+============================ */
+section { position: relative; overflow: hidden; }
+
+.section-pad { padding: 100px 5%; }
+
+.section-header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 60px;
+}
+.section-label {
+  display: inline-block;
+  font-size: 0.75rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--ice);
+  margin-bottom: 14px;
+  padding: 5px 16px;
+  border: 1px solid rgba(0,212,255,0.25);
+  border-radius: 20px;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1.1;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+}
+.section-title .accent { color: var(--ice); }
+.section-desc {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+/* Reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+
+/* ============================
+   TRUST BAR
+============================ */
+.trust-bar {
+  background: rgba(0,212,255,0.04);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 20px 5%;
+  overflow: hidden;
+}
+.trust-scroll {
+  display: flex;
+  gap: 60px;
+  animation: trustScroll 20s linear infinite;
+  white-space: nowrap;
+}
+.trust-scroll:hover { animation-play-state: paused; }
+@keyframes trustScroll { to { transform: translateX(-50%); } }
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+.trust-item .icon { font-size: 1.2rem; }
+.trust-item .highlight { color: var(--ice); }
+
+/* ============================
+   ABOUT SECTION
+============================ */
+#about { background: var(--bg-mid); }
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about-visual {
+  position: relative;
+}
+
+.about-img-frame {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  aspect-ratio: 4/5;
+  background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(7,13,24,0.8));
+  border: 1px solid var(--border);
+}
+
+.about-img-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8rem;
+  color: rgba(0,212,255,0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.about-img-inner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 30% 30%, rgba(0,212,255,0.1), transparent 60%),
+    radial-gradient(circle at 70% 70%, rgba(255,107,26,0.07), transparent 60%);
+}
+
+.about-img-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 12px;
+  padding: 20px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+}
+.about-img-cell {
+  background: rgba(255,255,255,0.04);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 2rem;
+  transition: all var(--transition);
+}
+.about-img-cell:hover { background: var(--bg-card-hover); border-color: var(--border-hover); transform: scale(1.02); }
+.about-img-cell span { font-size: 0.7rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; font-family: var(--font-body); }
+
+.about-badge-float {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  background: var(--bg-mid);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px 24px;
+  backdrop-filter: blur(20px);
+  box-shadow: var(--glow);
+  z-index: 2;
+}
+.about-badge-num {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  color: var(--ice);
+  line-height: 1;
+}
+.about-badge-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+.about-content {}
+.about-content .section-header { text-align: left; margin-bottom: 28px; }
+
+.about-story {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.9;
+  margin-bottom: 32px;
+}
+
+.about-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 36px;
+}
+.stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 20px;
+  transition: all var(--transition);
+}
+.stat-card:hover { border-color: var(--border-hover); background: var(--bg-card-hover); }
+.stat-num {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  color: var(--ice);
+  line-height: 1;
+}
+.stat-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+.trust-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.trust-badge {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  background: rgba(0,212,255,0.06);
+  border: 1px solid rgba(0,212,255,0.18);
+  border-radius: 20px;
+  font-size: 0.8rem;
+  color: var(--ice);
+}
+
+/* ============================
+   SERVICES SECTION
+============================ */
+#services { background: var(--bg-deep); }
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.service-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 32px 24px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  transform-style: preserve-3d;
+}
+.service-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(0,212,255,0.07), transparent 65%);
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+}
+.service-card:hover::before { opacity: 1; }
+.service-card:hover { border-color: var(--border-hover); box-shadow: var(--glow); }
+
+.service-card.featured {
+  background: linear-gradient(135deg, rgba(255,107,26,0.08), rgba(255,60,0,0.04));
+  border-color: rgba(255,107,26,0.25);
+  grid-column: span 1;
+}
+.service-card.featured:hover {
+  border-color: rgba(255,107,26,0.5);
+  box-shadow: 0 0 30px rgba(255,107,26,0.2);
+}
+.service-card.featured::before {
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255,107,26,0.06), transparent 65%);
+}
+.featured-badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: var(--fire);
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+body.rtl .featured-badge { right: auto; left: 16px; }
+
+.service-icon {
+  width: 60px;
+  height: 60px;
+  background: rgba(0,212,255,0.08);
+  border: 1px solid rgba(0,212,255,0.15);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  transition: all var(--transition);
+}
+.service-card:hover .service-icon { background: rgba(0,212,255,0.14); transform: scale(1.1) rotate(-5deg); }
+.service-card.featured .service-icon {
+  background: rgba(255,107,26,0.1);
+  border-color: rgba(255,107,26,0.2);
+}
+
+.service-name {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  color: var(--text-primary);
+}
+.service-desc {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.btn-service {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.83rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--ice);
+  border: 1px solid rgba(0,212,255,0.25);
+  border-radius: 20px;
+  padding: 8px 18px;
+  transition: all var(--transition);
+  font-family: var(--font-body);
+}
+.btn-service:hover { background: rgba(0,212,255,0.1); border-color: var(--ice); }
+.service-card.featured .btn-service { color: var(--fire); border-color: rgba(255,107,26,0.3); }
+.service-card.featured .btn-service:hover { background: rgba(255,107,26,0.1); border-color: var(--fire); }
+
+/* ============================
+   WHY CHOOSE US
+============================ */
+#why { background: var(--bg-mid); }
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.why-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 36px 28px;
+  text-align: center;
+  transition: all var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.why-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--ice), transparent);
+  transition: width 0.4s ease;
+}
+.why-card:hover::after { width: 80%; }
+.why-card:hover { transform: translateY(-6px); border-color: var(--border-hover); box-shadow: var(--glow); }
+
+.why-icon {
+  font-size: 2.5rem;
+  margin-bottom: 18px;
+  display: block;
+  filter: drop-shadow(0 0 12px rgba(0,212,255,0.3));
+}
+.why-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  color: var(--text-primary);
+}
+.why-desc {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ============================
+   WORK SHOWCASE
+============================ */
+#work { background: var(--bg-deep); }
+
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.work-card {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  transition: all var(--transition);
+  position: relative;
+}
+.work-card:hover { transform: translateY(-6px); box-shadow: var(--glow); border-color: var(--border-hover); }
+
+.work-img {
+  aspect-ratio: 4/3;
+  background: linear-gradient(135deg, rgba(0,212,255,0.06), rgba(7,13,24,0.9));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  color: rgba(0,212,255,0.3);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.5s ease;
+}
+.work-card:hover .work-img { transform: scale(1.05); }
+.work-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 50%, rgba(4,8,15,0.8));
+}
+
+.work-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,212,255,0.05);
+  opacity: 0;
+  transition: opacity var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.work-card:hover .work-overlay { opacity: 1; }
+
+.work-info { padding: 20px; }
+.work-title { font-family: var(--font-display); font-size: 1.1rem; letter-spacing: 0.5px; margin-bottom: 6px; }
+.work-meta { font-size: 0.8rem; color: var(--text-muted); display: flex; align-items: center; gap: 8px; }
+.work-meta .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--ice); }
+
+/* ============================
+   TESTIMONIALS
+============================ */
+#testimonials { background: var(--bg-mid); }
+
+.testimonials-slider {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+.slider-track {
+  display: flex;
+  transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
+}
+.testimonial-slide {
+  min-width: 100%;
+  padding: 0 10px;
+}
+.testimonial-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 40px;
+  position: relative;
+}
+.testimonial-card::before {
+  content: '"';
+  position: absolute;
+  top: 20px; left: 32px;
+  font-family: Georgia, serif;
+  font-size: 6rem;
+  color: rgba(0,212,255,0.1);
+  line-height: 1;
+}
+body.rtl .testimonial-card::before { left: auto; right: 32px; }
+
+.testimonial-text {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.9;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+}
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.author-avatar {
+  width: 50px; height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--ice), var(--ice-dim));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--bg-deep);
+  font-family: var(--font-display);
+}
+.author-name { font-weight: 700; font-size: 1rem; }
+.author-location { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; }
+.testimonial-stars {
+  margin-left: auto;
+  color: #ffd700;
+  font-size: 1rem;
+  letter-spacing: 2px;
+}
+body.rtl .testimonial-stars { margin-left: 0; margin-right: auto; }
+
+.slider-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 32px;
+}
+.slider-btn {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition);
+  cursor: pointer;
+}
+.slider-btn:hover { border-color: var(--ice); color: var(--ice); background: rgba(0,212,255,0.08); }
+.slider-dots { display: flex; gap: 8px; }
+.slider-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--border);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.slider-dot.active { background: var(--ice); width: 24px; border-radius: 4px; box-shadow: 0 0 8px var(--ice); }
+
+/* ============================
+   BOOKING FORM
+============================ */
+#booking { background: var(--bg-deep); }
+
+.booking-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 80px;
+  align-items: start;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.booking-info {}
+.booking-info .section-header { text-align: left; margin-bottom: 28px; }
+.booking-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.booking-feature-icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  background: rgba(0,212,255,0.08);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+.booking-feature-text strong { display: block; font-size: 0.95rem; margin-bottom: 3px; }
+.booking-feature-text span { font-size: 0.82rem; color: var(--text-muted); }
+
+.booking-form-wrap {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 40px;
+}
+
+.form-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+  margin-bottom: 28px;
+  color: var(--text-primary);
+}
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-group { margin-bottom: 16px; }
+.form-label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+.form-control {
+  width: 100%;
+  padding: 14px 16px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-family: var(--font-body);
+  transition: all var(--transition);
+  outline: none;
+}
+.form-control:focus {
+  border-color: var(--ice);
+  background: rgba(0,212,255,0.04);
+  box-shadow: 0 0 0 3px rgba(0,212,255,0.1);
+}
+.form-control::placeholder { color: var(--text-muted); }
+select.form-control option { background: var(--bg-mid); color: var(--text-primary); }
+textarea.form-control { resize: vertical; min-height: 100px; }
+
+.form-error { font-size: 0.75rem; color: #ff4444; margin-top: 5px; display: none; }
+.form-group.error .form-control { border-color: #ff4444; }
+.form-group.error .form-error { display: block; }
+
+.btn-submit {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, var(--ice), var(--ice-dim));
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--bg-deep);
+  text-transform: uppercase;
+  transition: all var(--transition);
+  box-shadow: 0 6px 25px rgba(0,212,255,0.3);
+  font-family: var(--font-body);
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.btn-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 35px rgba(0,212,255,0.5); }
+.btn-submit.loading { opacity: 0.7; pointer-events: none; }
+
+.form-success {
+  display: none;
+  text-align: center;
+  padding: 40px 20px;
+}
+.success-icon {
+  font-size: 4rem;
+  margin-bottom: 16px;
+  animation: successBounce 0.5s ease;
+}
+@keyframes successBounce { 0%{transform:scale(0)} 70%{transform:scale(1.1)} 100%{transform:scale(1)} }
+.success-title { font-family: var(--font-display); font-size: 1.8rem; color: var(--ice); margin-bottom: 8px; }
+.success-desc { color: var(--text-secondary); font-size: 0.95rem; }
+
+/* ============================
+   LOCATION SECTION
+============================ */
+#location { background: var(--bg-mid); }
+
+.location-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 60px;
+  align-items: start;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.map-frame {
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  aspect-ratio: 4/3;
+  position: relative;
+  background: var(--bg-card);
+}
+
+.map-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Simulated map grid */
+.map-placeholder::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,212,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,255,0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.map-pin {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -60%);
+  z-index: 2;
+  text-align: center;
+}
+.map-pin-icon {
+  font-size: 3rem;
+  filter: drop-shadow(0 0 20px rgba(0,212,255,0.8));
+  animation: pinBounce 2s ease-in-out infinite;
+}
+@keyframes pinBounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+.map-pin-pulse {
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  border: 2px solid rgba(0,212,255,0.3);
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  animation: mapPulse 2s ease-out infinite;
+}
+.map-pin-pulse:nth-child(2) { animation-delay: 0.7s; }
+.map-pin-pulse:nth-child(3) { animation-delay: 1.4s; }
+@keyframes mapPulse { 0%{transform:translate(-50%,-50%) scale(0);opacity:0.6} 100%{transform:translate(-50%,-50%) scale(3);opacity:0} }
+
+.map-label {
+  background: var(--bg-mid);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 0.75rem;
+  color: var(--ice);
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-top: 8px;
+  white-space: nowrap;
+}
+
+.location-content .section-header { text-align: left; margin-bottom: 24px; }
+.cities-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+.city-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  transition: all var(--transition);
+}
+.city-chip:hover { border-color: var(--border-hover); color: var(--ice); background: var(--bg-card-hover); }
+.city-chip .icon { font-size: 1rem; }
+
+.coverage-note {
+  background: rgba(0,212,255,0.05);
+  border: 1px solid rgba(0,212,255,0.15);
+  border-radius: 12px;
+  padding: 16px 20px;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* ============================
+   CONTACT SECTION
+============================ */
+#contact { background: var(--bg-deep); }
+
+.contact-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.contact-emergency {
+  background: linear-gradient(135deg, rgba(255,107,26,0.1), rgba(255,60,0,0.06));
+  border: 1px solid rgba(255,107,26,0.25);
+  border-radius: 24px;
+  padding: 50px;
+  text-align: center;
+  margin-bottom: 50px;
+  position: relative;
+  overflow: hidden;
+}
+.contact-emergency::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(255,107,26,0.06), transparent 70%);
+  animation: emergencyGlow 3s ease-in-out infinite;
+}
+@keyframes emergencyGlow { 0%,100%{opacity:0.5} 50%{opacity:1} }
+
+.emergency-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: rgba(255,107,26,0.15);
+  border: 1px solid rgba(255,107,26,0.3);
+  border-radius: 20px;
+  font-size: 0.78rem;
+  letter-spacing: 2px;
+  color: var(--fire);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.emergency-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+}
+.emergency-title span { color: var(--fire); }
+.emergency-desc {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-bottom: 32px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.emergency-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.btn-emergency-call {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 40px;
+  background: var(--fire);
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: white;
+  box-shadow: 0 6px 30px rgba(255,107,26,0.4);
+  transition: all var(--transition);
+  font-family: var(--font-body);
+}
+.btn-emergency-call:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(255,107,26,0.6); }
+
+.contact-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.contact-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 28px 24px;
+  text-align: center;
+  transition: all var(--transition);
+}
+.contact-card:hover { border-color: var(--border-hover); transform: translateY(-4px); box-shadow: var(--glow); }
+
+.contact-card-icon { font-size: 2rem; margin-bottom: 14px; display: block; }
+.contact-card-title {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.contact-card-value { font-size: 0.95rem; font-weight: 600; color: var(--text-primary); }
+.contact-card-sub { font-size: 0.78rem; color: var(--text-muted); margin-top: 4px; }
+
+/* ============================
+   FOOTER
+============================ */
+footer {
+  background: var(--bg-mid);
+  border-top: 1px solid var(--border);
+  padding: 60px 5% 30px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 50px;
+  max-width: 1200px;
+  margin: 0 auto 50px;
+}
+
+.footer-brand .logo { margin-bottom: 16px; }
+.footer-tagline { font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; max-width: 260px; margin-bottom: 24px; }
+.social-links { display: flex; gap: 12px; }
+.social-btn {
+  width: 38px; height: 38px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: var(--text-secondary);
+  transition: all var(--transition);
+}
+.social-btn:hover { border-color: var(--ice); color: var(--ice); background: rgba(0,212,255,0.08); }
+
+.footer-col-title {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  letter-spacing: 2px;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-links a {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  transition: color var(--transition);
+}
+.footer-links a:hover { color: var(--ice); }
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* ============================
+   FLOATING WHATSAPP
+============================ */
+.fab-whatsapp {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 900;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #25d366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  box-shadow: 0 4px 25px rgba(37,211,102,0.5);
+  transition: all var(--transition);
+  animation: fabFloat 3s ease-in-out infinite;
+}
+.fab-whatsapp:hover { transform: scale(1.1); box-shadow: 0 8px 35px rgba(37,211,102,0.7); }
+@keyframes fabFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+body.rtl .fab-whatsapp { right: auto; left: 28px; }
+
+.fab-pulse {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid rgba(37,211,102,0.5);
+  animation: fabPulse 2s ease-out infinite;
+}
+@keyframes fabPulse { 0%{transform:scale(1);opacity:0.8} 100%{transform:scale(1.6);opacity:0} }
+
+/* Sticky call bar (mobile) */
+.sticky-call-bar {
+  display: none;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 800;
+  padding: 12px 16px;
+  background: rgba(4,8,15,0.97);
+  border-top: 1px solid var(--border);
+  gap: 10px;
+  backdrop-filter: blur(10px);
+}
+.sticky-call-bar a {
+  flex: 1;
+  padding: 14px;
+  border-radius: 12px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  transition: all var(--transition);
+}
+.sticky-bar-call { background: var(--ice); color: var(--bg-deep); }
+.sticky-bar-wa { background: #25d366; color: white; }
+
+/* ============================
+   RESPONSIVE
+============================ */
+@media (max-width: 1024px) {
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .why-grid { grid-template-columns: repeat(2, 1fr); }
+  .contact-cards { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+}
+
+@media (max-width: 768px) {
+  nav { display: none; }
+  .hamburger { display: flex; }
+  .btn-call span { display: none; }
+
+  .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+  .hero-visual { order: -1; }
+  .hero-3d-logo { width: 240px; height: 240px; }
+
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .services-grid { grid-template-columns: 1fr; }
+  .work-grid { grid-template-columns: 1fr 1fr; }
+  .why-grid { grid-template-columns: 1fr; }
+  .booking-grid { grid-template-columns: 1fr; gap: 40px; }
+  .location-grid { grid-template-columns: 1fr; gap: 40px; }
+  .contact-cards { grid-template-columns: 1fr 1fr; }
+  .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+  .form-row { grid-template-columns: 1fr; }
+
+  .section-pad { padding: 70px 5%; }
+  .contact-emergency { padding: 32px 20px; }
+  .sticky-call-bar { display: flex; }
+
+  .fab-whatsapp { bottom: 90px; }
+  body.rtl .fab-whatsapp { bottom: 90px; }
+}
+
+@media (max-width: 480px) {
+  .work-grid { grid-template-columns: 1fr; }
+  .contact-cards { grid-template-columns: 1fr; }
+  .about-stats { grid-template-columns: 1fr 1fr; }
+}
+
+/* ============================
+   RTL ADJUSTMENTS
+============================ */
+body.rtl .about-badge-float { right: auto; left: -20px; }
+body.rtl .booking-info .section-header,
+body.rtl .location-content .section-header,
+body.rtl .about-content .section-header { text-align: right; }
+body.rtl .hero-contact-strip { flex-direction: row-reverse; }
+body.rtl .hero-cta { flex-direction: row-reverse; }
+
+/* ============================
+   GRADIENT LINES / DECOR
+============================ */
+.grad-line {
+  position: absolute;
+  left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0,212,255,0.3), transparent);
+}
+
+/* Emergency service pulsing highlight in nav */
+.nav-emergency {
+  color: var(--fire) !important;
+  border: 1px solid rgba(255,107,26,0.3);
+  border-radius: 20px;
+  padding: 6px 14px !important;
+  animation: emergNav 2s ease-in-out infinite;
+}
+@keyframes emergNav { 0%,100%{box-shadow:none} 50%{box-shadow:0 0 12px rgba(255,107,26,0.3)} }
+</style>
+</head>
+
+<body>
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <div class="preloader-inner">
+    <div class="gear-outer"></div>
+    <div class="gear-mid"></div>
+    <div class="gear-inner"></div>
+    <div class="fan-wrap">
+      <div class="fan-blade"></div>
+      <div class="fan-blade"></div>
+      <div class="fan-blade"></div>
+      <div class="fan-blade"></div>
+      <div class="fan-blade"></div>
+    </div>
+    <div class="orbit-dot"></div>
+    <div class="orbit-dot"></div>
+  </div>
+  <div class="preloader-text">
+    <div class="preloader-logo">AB SERVICE</div>
+    <div class="preloader-sub en-content">HVAC &amp; Electrical Services</div>
+    <div class="preloader-sub ar-content" style="display:none;">خدمات التكييف والكهرباء</div>
+    <div class="preloader-bar"><div class="preloader-bar-fill"></div></div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header id="header">
+  <a href="#" class="logo">
+    <div class="logo-icon">❄️</div>
+    <div class="logo-text">AB SERVICE <span>& MAINTENANCE</span></div>
+  </a>
+
+  <nav>
+    <a href="#about" class="nav-link en-content">About</a>
+    <a href="#services" class="nav-link en-content">Services</a>
+    <a href="#work" class="nav-link en-content">Our Work</a>
+    <a href="#booking" class="nav-link en-content">Book Now</a>
+    <a href="#contact" class="nav-link en-content">Contact</a>
+    <a href="#contact" class="nav-link nav-emergency en-content">⚡ Emergency</a>
+
+    <a href="#about" class="nav-link ar-content" style="display:none;">من نحن</a>
+    <a href="#services" class="nav-link ar-content" style="display:none;">خدماتنا</a>
+    <a href="#work" class="nav-link ar-content" style="display:none;">أعمالنا</a>
+    <a href="#booking" class="nav-link ar-content" style="display:none;">احجز الآن</a>
+    <a href="#contact" class="nav-link ar-content" style="display:none;">اتصل بنا</a>
+    <a href="#contact" class="nav-link nav-emergency ar-content" style="display:none;">⚡ طوارئ</a>
+  </nav>
+
+  <div class="header-actions">
+    <button class="lang-toggle" id="langToggle" onclick="toggleLang()">
+      <span id="langLabel">العربية</span>
+    </button>
+    <a href="https://wa.me/0559643637" class="btn-call">
+      <span>📞</span>
+      <span class="en-content">Call Now</span>
+      <span class="ar-content" style="display:none;">اتصل الآن</span>
+    </a>
+    <div class="hamburger" id="hamburger" onclick="toggleMobileNav()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="#about" class="nav-link en-content" onclick="closeMobileNav()">About</a>
+  <a href="#services" class="nav-link en-content" onclick="closeMobileNav()">Services</a>
+  <a href="#work" class="nav-link en-content" onclick="closeMobileNav()">Our Work</a>
+  <a href="#booking" class="nav-link en-content" onclick="closeMobileNav()">Book Now</a>
+  <a href="#contact" class="nav-link en-content" onclick="closeMobileNav()">Contact</a>
+  <a href="#contact" class="nav-link nav-emergency en-content" onclick="closeMobileNav()">⚡ Emergency</a>
+
+  <a href="#about" class="nav-link ar-content" style="display:none;" onclick="closeMobileNav()">من نحن</a>
+  <a href="#services" class="nav-link ar-content" style="display:none;" onclick="closeMobileNav()">خدماتنا</a>
+  <a href="#work" class="nav-link ar-content" style="display:none;" onclick="closeMobileNav()">أعمالنا</a>
+  <a href="#booking" class="nav-link ar-content" style="display:none;" onclick="closeMobileNav()">احجز الآن</a>
+  <a href="#contact" class="nav-link ar-content" style="display:none;" onclick="closeMobileNav()">اتصل بنا</a>
+  <a href="#contact" class="nav-link nav-emergency ar-content" style="display:none;" onclick="closeMobileNav()">⚡ طوارئ</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-particles" id="heroParticles"></div>
+
+  <div class="hero-grid">
+    <!-- 3D Logo Visual -->
+    <div class="hero-visual reveal">
+      <div class="hero-3d-logo">
+        <div class="logo-ring"></div>
+        <div class="logo-ring"></div>
+        <div class="logo-ring"></div>
+        <div class="logo-core">
+          <div class="logo-core-icon">**</div>
+          <div class="logo-core-name en-content">AB</div>
+          <div class="logo-core-name ar-content" style="display:none;">ارتك كول</div>
+          <div class="logo-core-tagline en-content">HVAC Excellence</div>
+          <div class="logo-core-tagline ar-content" style="display:none;">خبراء التبريد</div>
+        </div>
+        <div class="orbit-dot"></div>
+        <div class="orbit-dot"></div>
+        <div class="hero-stat-badge">
+          <div class="badge-num">24/7</div>
+          <div class="badge-label en-content">Emergency</div>
+          <div class="badge-label ar-content" style="display:none;">طوارئ</div>
+        </div>
+        <div class="hero-stat-badge">
+          <div class="badge-num">500+</div>
+          <div class="badge-label en-content">Projects Done</div>
+          <div class="badge-label ar-content" style="display:none;">مشروع منجز</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Text -->
+    <div class="hero-text reveal reveal-delay-2">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        <span class="en-content">Trusted HVAC & Electrical Experts</span>
+        <span class="ar-content" style="display:none;">خبراء موثوقون في التكييف والكهرباء</span>
+      </div>
+
+      <h1 class="hero-headline">
+        <span class="en-content">Saudi Arabia's<br><span class="accent">Premier</span> HVAC &<br><span class="fire">Electrical</span> Service</span>
+        <span class="ar-content" style="display:none;">الخدمة الأولى للتكييف<br><span class="accent">والكهرباء</span> في<br><span class="fire">المملكة العربية السعودية</span></span>
+      </h1>
+
+      <div class="typing-wrap">
+        <span class="typing-prefix en-content">We deliver</span>
+        <span class="typing-prefix ar-content" style="display:none;">نقدم لك</span>
+        <span class="typing-text" id="typingText"></span>
+        <span class="typing-cursor"></span>
+      </div>
+
+      <p class="hero-desc en-content">
+        Professional AC repair, installation, gas refill, and full electrical services across Saudi Arabia. Fast response, certified technicians, and guaranteed workmanship — when your comfort matters most.
+      </p>
+      <p class="hero-desc ar-content" style="display:none;">
+        خدمات احترافية في إصلاح وتركيب التكييف وشحن الغاز وجميع الأعمال الكهربائية في جميع أنحاء المملكة العربية السعودية. استجابة سريعة، فنيون معتمدون، وضمان على جميع الأعمال.
+      </p>
+
+      <div class="hero-cta">
+        <a href="tel:0559643637" class="btn-primary">
+          <span>📞</span>
+          <span class="en-content">Call Now — Free Quote</span>
+          <span class="ar-content" style="display:none;">اتصل الآن — عرض مجاني</span>
+        </a>
+        <a href="https://wa.me/0559643637" class="btn-whatsapp" target="_blank">
+          <span>💬</span>
+          <span class="en-content">WhatsApp Us</span>
+          <span class="ar-content" style="display:none;">واتساب</span>
+        </a>
+      </div>
+
+      <div class="hero-contact-strip">
+        <a href="tel:0559643637" class="contact-chip">
+          <span class="icon">📞</span>
+          <span>0559643637</span>
+        </a>
+        <a href="https://wa.me/0559643637" class="contact-chip">
+          <span class="icon">💬</span>
+          <span>WhatsApp</span>
+        </a>
+        <a href="mailto:abu.bakkar.ac.service@gmail.com" class="contact-chip">
+          <span class="icon">✉️</span>
+          <span>abu.bakkar.ac.service@gmail.com</span>
+        </a>
+      </div>
+
+      <div class="emergency-banner">
+        <span class="emg-icon">🚨</span>
+        <div class="emg-text">
+          <strong class="en-content">24/7 Emergency AC Repair Available</strong>
+          <strong class="ar-content" style="display:none;">خدمة إصلاح تكييف طارئة — متاحة 24/7</strong>
+          <span class="en-content">AC broken at midnight? We respond within 60 minutes.</span>
+          <span class="ar-content" style="display:none;">تعطل مكيفك ليلاً؟ نصل إليك خلال 60 دقيقة.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-scroll" id="trustScroll">
+    <div class="trust-item"><span class="icon">✅</span> <span class="en-content">Licensed &amp; Certified Technicians</span><span class="ar-content" style="display:none;">فنيون معتمدون ومرخصون</span></div>
+    <div class="trust-item"><span class="icon">⚡</span> <span class="en-content"><span class="highlight">60-Min</span> Emergency Response</span><span class="ar-content" style="display:none;">استجابة طوارئ خلال <span class="highlight">60 دقيقة</span></span></div>
+    <div class="trust-item"><span class="icon">🛡️</span> <span class="en-content">12-Month Workmanship Warranty</span><span class="ar-content" style="display:none;">ضمان 12 شهراً على العمل</span></div>
+    <div class="trust-item"><span class="icon">🗺️</span> <span class="en-content">Service Across Saudi Arabia</span><span class="ar-content" style="display:none;">خدمة في جميع أنحاء المملكة</span></div>
+    <div class="trust-item"><span class="icon">💸</span> <span class="en-content">Transparent Pricing — No Hidden Fees</span><span class="ar-content" style="display:none;">أسعار شفافة — بدون رسوم مخفية</span></div>
+    <div class="trust-item"><span class="icon">🏆</span> <span class="en-content">10+ Years of Trusted Service</span><span class="ar-content" style="display:none;">أكثر من 10 سنوات من الخدمة الموثوقة</span></div>
+    <!-- Duplicate for seamless loop -->
+    <div class="trust-item"><span class="icon">✅</span> <span class="en-content">Licensed &amp; Certified Technicians</span><span class="ar-content" style="display:none;">فنيون معتمدون ومرخصون</span></div>
+    <div class="trust-item"><span class="icon">⚡</span> <span class="en-content"><span class="highlight">60-Min</span> Emergency Response</span><span class="ar-content" style="display:none;">استجابة طوارئ خلال <span class="highlight">60 دقيقة</span></span></div>
+    <div class="trust-item"><span class="icon">🛡️</span> <span class="en-content">12-Month Workmanship Warranty</span><span class="ar-content" style="display:none;">ضمان 12 شهراً على العمل</span></div>
+    <div class="trust-item"><span class="icon">🗺️</span> <span class="en-content">Service Across Saudi Arabia</span><span class="ar-content" style="display:none;">خدمة في جميع أنحاء المملكة</span></div>
+    <div class="trust-item"><span class="icon">💸</span> <span class="en-content">Transparent Pricing — No Hidden Fees</span><span class="ar-content" style="display:none;">أسعار شفافة — بدون رسوم مخفية</span></div>
+    <div class="trust-item"><span class="icon">🏆</span> <span class="en-content">10+ Years of Trusted Service</span><span class="ar-content" style="display:none;">أكثر من 10 سنوات من الخدمة الموثوقة</span></div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about" class="section-pad">
+  <div class="about-grid">
+    <div class="about-visual reveal">
+      <div class="about-img-frame">
+        <div class="about-img-inner">
+          <div class="about-img-grid">
+            <div class="about-img-cell">❄️<span class="en-content">AC Service</span><span class="ar-content" style="display:none;">صيانة تكييف</span></div>
+            <div class="about-img-cell">🔧<span class="en-content">Repair</span><span class="ar-content" style="display:none;">إصلاح</span></div>
+            <div class="about-img-cell">⚡<span class="en-content">Electrical</span><span class="ar-content" style="display:none;">كهرباء</span></div>
+            <div class="about-img-cell">🏆<span class="en-content">Certified</span><span class="ar-content" style="display:none;">معتمد</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="about-badge-float">
+        <div class="about-badge-num">10+</div>
+        <div class="about-badge-label en-content">Years of Excellence</div>
+        <div class="about-badge-label ar-content" style="display:none;">سنوات من التميز</div>
+      </div>
+    </div>
+
+    <div class="about-content reveal reveal-delay-2">
+      <div class="section-header">
+        <span class="section-label en-content">About Arctic Cool</span>
+        <span class="section-label ar-content" style="display:none;">عن ارتك كول</span>
+        <h2 class="section-title">
+          <span class="en-content">Saudi Arabia's Most <span class="accent">Trusted</span> HVAC Partner</span>
+          <span class="ar-content" style="display:none;">شريكك <span class="accent">الموثوق</span> للتكييف في المملكة</span>
+        </h2>
+      </div>
+
+      <p class="about-story en-content">
+        For over a decade, Arctic Cool has been the go-to HVAC and electrical service provider for homeowners, tenants, and businesses across Saudi Arabia. We started with a simple promise: deliver fast, honest, and professional service — every time.
+      </p>
+      <p class="about-story ar-content" style="display:none;">
+        لأكثر من عقد من الزمن، كانت ارتك كول الخيار الأول لأصحاب المنازل والمستأجرين والشركات في جميع أنحاء المملكة العربية السعودية. بدأنا بوعد بسيط: تقديم خدمة سريعة وصادقة واحترافية — في كل مرة.
+      </p>
+
+      <div class="about-stats">
+        <div class="stat-card reveal reveal-delay-1">
+          <div class="stat-num">500+</div>
+          <div class="stat-label en-content">Projects Completed</div>
+          <div class="stat-label ar-content" style="display:none;">مشروع منجز</div>
+        </div>
+        <div class="stat-card reveal reveal-delay-2">
+          <div class="stat-num">24/7</div>
+          <div class="stat-label en-content">Emergency Support</div>
+          <div class="stat-label ar-content" style="display:none;">دعم طوارئ</div>
+        </div>
+        <div class="stat-card reveal reveal-delay-3">
+          <div class="stat-num">15+</div>
+          <div class="stat-label en-content">Certified Technicians</div>
+          <div class="stat-label ar-content" style="display:none;">فني معتمد</div>
+        </div>
+        <div class="stat-card reveal reveal-delay-4">
+          <div class="stat-num">12M</div>
+          <div class="stat-label en-content">Warranty on Work</div>
+          <div class="stat-label ar-content" style="display:none;">ضمان على الأعمال</div>
+        </div>
+      </div>
+
+      <div class="trust-badges">
+        <div class="trust-badge">✅ <span class="en-content">Ministry Certified</span><span class="ar-content" style="display:none;">شهادة وزارية</span></div>
+        <div class="trust-badge">🛡️ <span class="en-content">Insured Work</span><span class="ar-content" style="display:none;">عمل مؤمّن</span></div>
+        <div class="trust-badge">⭐ <span class="en-content">5-Star Rated</span><span class="ar-content" style="display:none;">تقييم 5 نجوم</span></div>
+        <div class="trust-badge">🚀 <span class="en-content">Fast Response</span><span class="ar-content" style="display:none;">استجابة فورية</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="section-pad">
+  <div class="section-header reveal">
+    <span class="section-label en-content">What We Do</span>
+    <span class="section-label ar-content" style="display:none;">ماذا نقدم</span>
+    <h2 class="section-title">
+      <span class="en-content">Complete <span class="accent">HVAC & Electrical</span> Solutions</span>
+      <span class="ar-content" style="display:none;">حلول متكاملة للتكييف <span class="accent">والكهرباء</span></span>
+    </h2>
+    <p class="section-desc en-content">From emergency AC repairs to full electrical installations — we have the expertise to handle every job, big or small.</p>
+    <p class="section-desc ar-content" style="display:none;">من إصلاح التكييف الطارئ إلى التركيبات الكهربائية الكاملة — نمتلك الخبرة اللازمة لكل عمل، صغيراً كان أم كبيراً.</p>
+  </div>
+
+  <div class="services-grid" id="servicesGrid">
+    <!-- AC Services -->
+    <div class="service-card reveal reveal-delay-1" data-tilt>
+      <div class="service-icon">❄️</div>
+      <div class="service-name en-content">AC Repair</div>
+      <div class="service-name ar-content" style="display:none;">إصلاح التكييف</div>
+      <p class="service-desc en-content">Fast diagnosis and repair of all AC brands and models. We fix it right the first time — guaranteed.</p>
+      <p class="service-desc ar-content" style="display:none;">تشخيص وإصلاح سريع لجميع ماركات وموديلات التكييف. نصلحها صح من أول مرة — مع الضمان.</p>
+      <a href="#booking" class="btn-service"><span class="en-content">Request Service →</span><span class="ar-content" style="display:none;">اطلب الخدمة ←</span></a>
+    </div>
+
+    <div class="service-card reveal reveal-delay-2" data-tilt>
+      <div class="service-icon">🔧</div>
+      <div class="service-name en-content">AC Installation</div>
+      <div class="service-name ar-content" style="display:none;">تركيب تكييف</div>
+      <p class="service-desc en-content">Professional installation of split units, central AC systems, and cassette units with optimal performance setup.</p>
+      <p class="service-desc ar-content" style="display:none;">تركيب احترافي لوحدات السبليت وأنظمة التكييف المركزية مع ضبط الأداء الأمثل.</p>
+      <a href="#booking" class="btn-service"><span class="en-content">Request Service →</span><span class="ar-content" style="display:none;">اطلب الخدمة ←</span></a>
+    </div>
+
+    <div class="service-card featured reveal reveal-delay-3" data-tilt>
+      <div class="featured-badge en-content">24/7 Emergency</div>
+      <div class="featured-badge ar-content" style="display:none;">طوارئ 24/7</div>
+      <div class="service-icon">🚨</div>
+      <div class="service-name en-content">Emergency AC Repair</div>
+      <div class="service-name ar-content" style="display:none;">إصلاح تكييف طارئ</div>
+      <p class="service-desc en-content">AC down in the middle of the night? No problem. Our emergency team responds within 60 minutes, day or night.</p>
+      <p class="service-desc ar-content" style="display:none;">تعطل تكييفك في منتصف الليل؟ لا مشكلة. فريق الطوارئ لدينا يصل خلال 60 دقيقة، ليلاً أو نهاراً.</p>
+      <a href="tel:+966500000000" class="btn-service"><span class="en-content">Call Now — Free →</span><span class="ar-content" style="display:none;">اتصل الآن — مجاناً ←</span></a>
+    </div>
+
+    <div class="service-card reveal reveal-delay-1" data-tilt>
+      <div class="service-icon">🧪</div>
+      <div class="service-name en-content">Gas Refill</div>
+      <div class="service-name ar-content" style="display:none;">شحن الغاز</div>
+      <p class="service-desc en-content">Restore your AC cooling power with professional refrigerant refilling. All gas types supported including R22, R32, R410A.</p>
+      <p class="service-desc ar-content" style="display:none;">استعد برودة تكييفك بإعادة شحن الغاز احترافياً. ندعم جميع أنواع الغاز بما فيها R22 و R32 و R410A.</p>
+      <a href="#booking" class="btn-service"><span class="en-content">Request Service →</span><span class="ar-content" style="display:none;">اطلب الخدمة ←</span></a>
+    </div>
+
+    <div class="service-card reveal reveal-delay-2" data-tilt>
+      <div class="service-icon">🧹</div>
+      <div class="service-name en-content">AC Maintenance</div>
+      <div class="service-name ar-content" style="display:none;">صيانة التكييف</div>
+      <p class="service-desc en-content">Scheduled deep cleaning, filter replacement, and full system checks to keep your AC running at peak efficiency.</p>
+      <p class="service-desc ar-content" style="display:none;">تنظيف عميق دوري وتغيير الفلاتر وفحص كامل للنظام للحفاظ على كفاءة تكييفك القصوى.</p>
+      <a href="#booking" class="btn-service"><span class="en-content">Request Service →</span><span class="ar-content" style="display:none;">اطلب الخدمة ←</span></a>
+    </div>
+
+    <div class="service-card reveal reveal-delay-3" data-tilt>
+      <div class="service-icon">🌡️</div>
+      <div class="service-name en-content">Refrigerator Repair</div>
+      <div class="service-name ar-content" style="display:none;">إصلاح الثلاجة</div>
+      <p class="service-desc en-content">Complete refrigerator diagnostics and repair — compressor, thermostat, gas recharge, and electrical faults.</p>
+      <p class="service-desc ar-content" style="display:none;">تشخيص وإصلاح شامل للثلاجات — الكمبروسر، الثيرموستات، شحن الغاز، والأعطال الكهربائية.</p>
+      <a href="#booking" class="btn-service"><span class="en-content">Request Service →</span><span class="ar-content" style="display:none;">اطلب الخدمة ←</span></a>
+    </div>
+
+    <!-- Electrical Services -->
+    <div class="service-card reveal reveal-delay-1" data-tilt>
+      <div class="service-icon">⚡</div>
+      <div class="service-name en-content">Electrical Wiring</div>
+      <div class="service-name ar-content" style="display:none;">تمديد الأسلاك الكهربائية</div>
+      <p class="service-desc en-content">Safe and code-compliant electrical wiring, rewiring, troubleshooting, and panel upgrades for homes and offices.</p>
+      <p class="service-desc ar-content" style="display:none;">تمديد أسلاك كهربائية آمن ومطابق للمعايير، وإعادة التوصيل وتحديث اللوحات للمنازل والمكاتب.</p>
+      <a href="#booking" class="btn-service"><span class="en-content">Request Service →</span><span class="ar-content" style="display:none;">اطلب الخدمة ←</span></a>
+    </div>
+
+    <div class="service-card reveal reveal-delay-2" data-tilt>
+      <div class="service-icon">💡</div>
+      <div class="service-name en-content">Light Installation</div>
+      <div class="service-name ar-content" style="display:none;">تركيب الإضاءة</div>
+      <p class="service-desc en-content">Indoor and outdoor lighting installation, LED upgrades, chandelier fitting, and smart lighting systems.</p>
+      <p class="service-desc ar-content" style="display:none;">تركيب إضاءة داخلية وخارجية، ترقية LED، تركيب ثريات، وأنظمة الإضاءة الذكية.</p>
+      <a href="#booking" class="btn-service"><span class="en-content">Request Service →</span><span class="ar-content" style="display:none;">اطلب الخدمة ←</span></a>
+    </div>
+
+    <div class="service-card reveal reveal-delay-3" data-tilt>
+      <div class="service-icon">🖥️</div>
+      <div class="service-name en-content">TV & Fan Repair</div>
+      <div class="service-name ar-content" style="display:none;">إصلاح التلفاز والمراوح</div>
+      <p class="service-desc en-content">Expert repair of ceiling fans, wall fans, and LED/smart TVs. Fast turnaround, genuine parts, fair pricing.</p>
+      <p class="service-desc ar-content" style="display:none;">إصلاح احترافي للمراوح السقفية والجدارية والتلفزيونات الذكية. إنجاز سريع، قطع أصلية، أسعار عادلة.</p>
+      <a href="#booking" class="btn-service"><span class="en-content">Request Service →</span><span class="ar-content" style="display:none;">اطلب الخدمة ←</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section id="why" class="section-pad">
+  <div class="section-header reveal">
+    <span class="section-label en-content">Why Arctic Cool</span>
+    <span class="section-label ar-content" style="display:none;">لماذا ارتك كول</span>
+    <h2 class="section-title">
+      <span class="en-content">The <span class="accent">Smarter Choice</span> for HVAC</span>
+      <span class="ar-content" style="display:none;">الخيار <span class="accent">الأذكى</span> للتكييف</span>
+    </h2>
+    <p class="section-desc en-content">We don't just fix problems — we deliver peace of mind with every visit.</p>
+    <p class="section-desc ar-content" style="display:none;">نحن لا نصلح المشكلات فحسب — بل نمنحك راحة البال في كل زيارة.</p>
+  </div>
+
+  <div class="why-grid">
+    <div class="why-card reveal reveal-delay-1">
+      <span class="why-icon">⚡</span>
+      <div class="why-title en-content">Lightning Fast Response</div>
+      <div class="why-title ar-content" style="display:none;">استجابة فائقة السرعة</div>
+      <p class="why-desc en-content">We understand urgency. Our technicians are always on standby to reach you within 60 minutes of your call, any time of day.</p>
+      <p class="why-desc ar-content" style="display:none;">نفهم الإلحاح. فنيونا دائماً على أهبة الاستعداد للوصول إليك خلال 60 دقيقة من اتصالك، في أي وقت من اليوم.</p>
+    </div>
+
+    <div class="why-card reveal reveal-delay-2">
+      <span class="why-icon">🏆</span>
+      <div class="why-title en-content">Certified Professionals</div>
+      <div class="why-title ar-content" style="display:none;">محترفون معتمدون</div>
+      <p class="why-desc en-content">All our technicians are licensed, trained, and certified. You get experienced hands — not apprentices — every single time.</p>
+      <p class="why-desc ar-content" style="display:none;">جميع فنيينا مرخصون ومدربون ومعتمدون. تحصل على أيدٍ خبيرة — لا متدربين — في كل مرة.</p>
+    </div>
+
+    <div class="why-card reveal reveal-delay-3">
+      <span class="why-icon">💸</span>
+      <div class="why-title en-content">Transparent Pricing</div>
+      <div class="why-title ar-content" style="display:none;">أسعار شفافة</div>
+      <p class="why-desc en-content">No surprise bills. We give you a clear quote before we start. What we quote is what you pay — nothing more.</p>
+      <p class="why-desc ar-content" style="display:none;">لا فواتير مفاجئة. نعطيك عرضاً واضحاً قبل البدء. ما نقتبسه هو ما تدفعه — لا أكثر.</p>
+    </div>
+
+    <div class="why-card reveal reveal-delay-1">
+      <span class="why-icon">🛡️</span>
+      <div class="why-title en-content">12-Month Warranty</div>
+      <div class="why-title ar-content" style="display:none;">ضمان 12 شهراً</div>
+      <p class="why-desc en-content">Every repair and installation comes with a 12-month workmanship guarantee. If it fails, we fix it — free of charge.</p>
+      <p class="why-desc ar-content" style="display:none;">كل إصلاح وتركيب يأتي مع ضمان 12 شهراً. إذا تعطل، نصلحه — مجاناً.</p>
+    </div>
+
+    <div class="why-card reveal reveal-delay-2">
+      <span class="why-icon">🕐</span>
+      <div class="why-title en-content">Available 24/7</div>
+      <div class="why-title ar-content" style="display:none;">متاحون 24/7</div>
+      <p class="why-desc en-content">Emergencies don't follow business hours. Our support line and field team are available 24 hours a day, 365 days a year.</p>
+      <p class="why-desc ar-content" style="display:none;">الطوارئ لا تتبع أوقات العمل. خط دعمنا وفريقنا الميداني متاح 24 ساعة يومياً، 365 يوماً في السنة.</p>
+    </div>
+
+    <div class="why-card reveal reveal-delay-3">
+      <span class="why-icon">🗺️</span>
+      <div class="why-title en-content">Saudi-Wide Coverage</div>
+      <div class="why-title ar-content" style="display:none;">تغطية شاملة في المملكة</div>
+      <p class="why-desc en-content">From Riyadh to Jeddah, Dammam to Mecca — we serve all major cities and regions across the Kingdom.</p>
+      <p class="why-desc ar-content" style="display:none;">من الرياض إلى جدة، ومن الدمام إلى مكة — نخدم جميع المدن والمناطق الكبرى في المملكة.</p>
+    </div>
+  </div>
+</section>
+
+<!-- OUR WORK -->
+<section id="work" class="section-pad">
+  <div class="section-header reveal">
+    <span class="section-label en-content">Our Work</span>
+    <span class="section-label ar-content" style="display:none;">أعمالنا</span>
+    <h2 class="section-title">
+      <span class="en-content">Proof in Every <span class="accent">Project</span></span>
+      <span class="ar-content" style="display:none;">الدليل في كل <span class="accent">مشروع</span></span>
+    </h2>
+    <p class="section-desc en-content">A look at recent installations, repairs, and service calls — real work, real results.</p>
+    <p class="section-desc ar-content" style="display:none;">نظرة على أحدث التركيبات والإصلاحات وطلبات الخدمة — عمل حقيقي، نتائج حقيقية.</p>
+  </div>
+
+  <div class="work-grid">
+    <div class="work-card reveal reveal-delay-1">
+      <div class="work-img" style="background:linear-gradient(135deg, rgba(0,212,255,0.08),rgba(4,8,15,0.9))">❄️
+        <div class="work-overlay">🔍</div>
+      </div>
+      <div class="work-info">
+        <div class="work-title en-content">Villa AC System — Riyadh</div>
+        <div class="work-title ar-content" style="display:none;">نظام تكييف فيلا — الرياض</div>
+        <div class="work-meta"><span class="dot"></span><span class="en-content">Full Installation</span><span class="ar-content" style="display:none;">تركيب كامل</span><span class="dot"></span><span class="en-content">5 Units</span><span class="ar-content" style="display:none;">5 وحدات</span></div>
+      </div>
+    </div>
+
+    <div class="work-card reveal reveal-delay-2">
+      <div class="work-img" style="background:linear-gradient(135deg, rgba(255,107,26,0.06),rgba(4,8,15,0.9))">⚡
+        <div class="work-overlay">🔍</div>
+      </div>
+      <div class="work-info">
+        <div class="work-title en-content">Office Electrical Rewire — Jeddah</div>
+        <div class="work-title ar-content" style="display:none;">إعادة توصيل كهربائي — جدة</div>
+        <div class="work-meta"><span class="dot"></span><span class="en-content">Wiring Upgrade</span><span class="ar-content" style="display:none;">ترقية أسلاك</span><span class="dot"></span><span class="en-content">Commercial</span><span class="ar-content" style="display:none;">تجاري</span></div>
+      </div>
+    </div>
+
+    <div class="work-card reveal reveal-delay-3">
+      <div class="work-img" style="background:linear-gradient(135deg, rgba(0,212,255,0.05),rgba(7,13,24,0.95))">🧪
+        <div class="work-overlay">🔍</div>
+      </div>
+      <div class="work-info">
+        <div class="work-title en-content">Emergency Gas Refill — Dammam</div>
+        <div class="work-title ar-content" style="display:none;">شحن غاز طارئ — الدمام</div>
+        <div class="work-meta"><span class="dot"></span><span class="en-content">Emergency Call</span><span class="ar-content" style="display:none;">طلب طارئ</span><span class="dot"></span><span class="en-content">45-Min Response</span><span class="ar-content" style="display:none;">استجابة 45 دقيقة</span></div>
+      </div>
+    </div>
+
+    <div class="work-card reveal reveal-delay-1">
+      <div class="work-img" style="background:linear-gradient(135deg, rgba(255,107,26,0.05),rgba(4,8,15,0.9))">💡
+        <div class="work-overlay">🔍</div>
+      </div>
+      <div class="work-info">
+        <div class="work-title en-content">LED Lighting Upgrade — Mecca</div>
+        <div class="work-title ar-content" style="display:none;">ترقية إضاءة LED — مكة المكرمة</div>
+        <div class="work-meta"><span class="dot"></span><span class="en-content">Full Upgrade</span><span class="ar-content" style="display:none;">ترقية كاملة</span><span class="dot"></span><span class="en-content">Residential</span><span class="ar-content" style="display:none;">سكني</span></div>
+      </div>
+    </div>
+
+    <div class="work-card reveal reveal-delay-2">
+      <div class="work-img" style="background:linear-gradient(135deg, rgba(0,212,255,0.07),rgba(4,8,15,0.9))">🔧
+        <div class="work-overlay">🔍</div>
+      </div>
+      <div class="work-info">
+        <div class="work-title en-content">Central AC Maintenance — Taif</div>
+        <div class="work-title ar-content" style="display:none;">صيانة تكييف مركزي — الطائف</div>
+        <div class="work-meta"><span class="dot"></span><span class="en-content">Scheduled Service</span><span class="ar-content" style="display:none;">خدمة دورية</span><span class="dot"></span><span class="en-content">Hotel</span><span class="ar-content" style="display:none;">فندق</span></div>
+      </div>
+    </div>
+
+    <div class="work-card reveal reveal-delay-3">
+      <div class="work-img" style="background:linear-gradient(135deg, rgba(0,180,255,0.06),rgba(4,8,15,0.9))">🖥️
+        <div class="work-overlay">🔍</div>
+      </div>
+      <div class="work-info">
+        <div class="work-title en-content">Smart TV & Fan Repair — Khobar</div>
+        <div class="work-title ar-content" style="display:none;">إصلاح تلفاز ومراوح — الخبر</div>
+        <div class="work-meta"><span class="dot"></span><span class="en-content">Multiple Units</span><span class="ar-content" style="display:none;">وحدات متعددة</span><span class="dot"></span><span class="en-content">Same Day</span><span class="ar-content" style="display:none;">نفس اليوم</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials" class="section-pad">
+  <div class="section-header reveal">
+    <span class="section-label en-content">Customer Reviews</span>
+    <span class="section-label ar-content" style="display:none;">آراء العملاء</span>
+    <h2 class="section-title">
+      <span class="en-content">What Our <span class="accent">Customers Say</span></span>
+      <span class="ar-content" style="display:none;">ماذا يقول <span class="accent">عملاؤنا</span></span>
+    </h2>
+  </div>
+
+  <div class="testimonials-slider reveal">
+    <div class="slider-track" id="sliderTrack">
+      <div class="testimonial-slide">
+        <div class="testimonial-card">
+          <p class="testimonial-text en-content">
+            Our AC broke down at 2am during Ramadan. Arctic Cool showed up within 45 minutes and had it running in an hour. Incredible service, professional team, and the price was very fair. Highly recommend to every family in Riyadh.
+          </p>
+          <p class="testimonial-text ar-content" style="display:none;">
+            تعطل تكييفنا في الساعة 2 صباحاً خلال رمضان. جاء فريق ارتك كول خلال 45 دقيقة وأصلحوه في ساعة. خدمة لا تصدق، فريق احترافي، والسعر كان معقولاً جداً. أوصي به لكل عائلة في الرياض.
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">A</div>
+            <div>
+              <div class="author-name en-content">Abdullah Al-Rashidi</div>
+              <div class="author-name ar-content" style="display:none;">عبدالله الرشيدي</div>
+              <div class="author-location en-content">📍 Riyadh</div>
+              <div class="author-location ar-content" style="display:none;">📍 الرياض</div>
+            </div>
+            <div class="testimonial-stars">★★★★★</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-slide">
+        <div class="testimonial-card">
+          <p class="testimonial-text en-content">
+            I needed full AC installation for my new apartment in Jeddah. Arctic Cool gave me the best quote, arrived on time, cleaned up after themselves, and everything works perfectly. Will use them for all future electrical work too.
+          </p>
+          <p class="testimonial-text ar-content" style="display:none;">
+            احتجت إلى تركيب تكييف كامل لشقتي الجديدة في جدة. أعطتني ارتك كول أفضل سعر، وصلوا في الوقت المحدد، ونظفوا بعد الانتهاء، وكل شيء يعمل بشكل مثالي. سأستخدمهم لجميع أعمالي الكهربائية المستقبلية أيضاً.
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">S</div>
+            <div>
+              <div class="author-name en-content">Sara Al-Qahtani</div>
+              <div class="author-name ar-content" style="display:none;">سارة القحطاني</div>
+              <div class="author-location en-content">📍 Jeddah</div>
+              <div class="author-location ar-content" style="display:none;">📍 جدة</div>
+            </div>
+            <div class="testimonial-stars">★★★★★</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-slide">
+        <div class="testimonial-card">
+          <p class="testimonial-text en-content">
+            We've been using Arctic Cool for our office building in Dammam for 3 years. They handle everything from AC maintenance to electrical repairs. Reliable, honest, and always on time. I trust them completely.
+          </p>
+          <p class="testimonial-text ar-content" style="display:none;">
+            نستخدم ارتك كول لمبنى مكاتبنا في الدمام منذ 3 سنوات. يتعاملون مع كل شيء من صيانة التكييف إلى الإصلاحات الكهربائية. موثوقون، صادقون، ودائماً في الوقت المحدد. أثق بهم تماماً.
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">K</div>
+            <div>
+              <div class="author-name en-content">Khalid Al-Dosari</div>
+              <div class="author-name ar-content" style="display:none;">خالد الدوسري</div>
+              <div class="author-location en-content">📍 Dammam</div>
+              <div class="author-location ar-content" style="display:none;">📍 الدمام</div>
+            </div>
+            <div class="testimonial-stars">★★★★★</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slider-controls">
+      <button class="slider-btn" onclick="moveSlider(-1)">←</button>
+      <div class="slider-dots" id="sliderDots">
+        <div class="slider-dot active" onclick="goToSlide(0)"></div>
+        <div class="slider-dot" onclick="goToSlide(1)"></div>
+        <div class="slider-dot" onclick="goToSlide(2)"></div>
+      </div>
+      <button class="slider-btn" onclick="moveSlider(1)">→</button>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section id="booking" class="section-pad">
+  <div class="booking-grid">
+    <div class="booking-info">
+      <div class="section-header">
+        <span class="section-label en-content">Book a Service</span>
+        <span class="section-label ar-content" style="display:none;">احجز خدمة</span>
+        <h2 class="section-title">
+          <span class="en-content">Request <span class="accent">Service</span> Now</span>
+          <span class="ar-content" style="display:none;">اطلب <span class="accent">الخدمة</span> الآن</span>
+        </h2>
+        <p class="section-desc en-content">Fill out the form and our team will contact you within 30 minutes to confirm your booking.</p>
+        <p class="section-desc ar-content" style="display:none;">أكمل النموذج وسيتصل بك فريقنا خلال 30 دقيقة لتأكيد حجزك.</p>
+      </div>
+
+      <div class="booking-feature">
+        <div class="booking-feature-icon">🕐</div>
+        <div class="booking-feature-text">
+          <strong class="en-content">30-Min Callback Guarantee</strong>
+          <strong class="ar-content" style="display:none;">ضمان الرد خلال 30 دقيقة</strong>
+          <span class="en-content">We'll call you back to confirm your booking fast.</span>
+          <span class="ar-content" style="display:none;">سنتصل بك لتأكيد حجزك بسرعة.</span>
+        </div>
+      </div>
+      <div class="booking-feature">
+        <div class="booking-feature-icon">🛡️</div>
+        <div class="booking-feature-text">
+          <strong class="en-content">Free Quote, No Obligation</strong>
+          <strong class="ar-content" style="display:none;">عرض مجاني بدون التزام</strong>
+          <span class="en-content">Get a transparent price before we begin any work.</span>
+          <span class="ar-content" style="display:none;">احصل على سعر شفاف قبل بدء أي عمل.</span>
+        </div>
+      </div>
+      <div class="booking-feature">
+        <div class="booking-feature-icon">🏆</div>
+        <div class="booking-feature-text">
+          <strong class="en-content">Certified Technician Dispatch</strong>
+          <strong class="ar-content" style="display:none;">إرسال فني معتمد</strong>
+          <span class="en-content">Only licensed, experienced professionals handle your job.</span>
+          <span class="ar-content" style="display:none;">فقط محترفون مرخصون وذوو خبرة يتولون عملك.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="booking-form-wrap">
+      <div class="form-title en-content">📋 Service Request</div>
+      <div class="form-title ar-content" style="display:none;">📋 طلب خدمة</div>
+
+      <div id="bookingForm">
+        <div class="form-row">
+          <div class="form-group" id="grp-name">
+            <label class="form-label en-content">Full Name *</label>
+            <label class="form-label ar-content" style="display:none;">الاسم الكامل *</label>
+            <input type="text" class="form-control" id="fName" placeholder="Your full name">
+            <div class="form-error en-content">Please enter your name</div>
+            <div class="form-error ar-content" style="display:none;">الرجاء إدخال اسمك</div>
+          </div>
+          <div class="form-group" id="grp-phone">
+            <label class="form-label en-content">Phone Number *</label>
+            <label class="form-label ar-content" style="display:none;">رقم الهاتف *</label>
+            <input type="tel" class="form-control" id="fPhone" placeholder="+966 5X XXX XXXX">
+            <div class="form-error en-content">Please enter a valid phone number</div>
+            <div class="form-error ar-content" style="display:none;">الرجاء إدخال رقم هاتف صحيح</div>
+          </div>
+        </div>
+
+        <div class="form-group" id="grp-location">
+          <label class="form-label en-content">Location / City *</label>
+          <label class="form-label ar-content" style="display:none;">الموقع / المدينة *</label>
+          <input type="text" class="form-control" id="fLocation" placeholder="e.g. Riyadh, Al-Olaya District">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label en-content">Service Type *</label>
+          <label class="form-label ar-content" style="display:none;">نوع الخدمة *</label>
+          <select class="form-control" id="fService">
+            <option value="" class="en-content">Select a service...</option>
+            <option value="ac-repair" class="en-content">AC Repair</option>
+            <option value="ac-install" class="en-content">AC Installation</option>
+            <option value="gas" class="en-content">Gas Refill</option>
+            <option value="maintenance" class="en-content">AC Maintenance</option>
+            <option value="fridge" class="en-content">Refrigerator Repair</option>
+            <option value="wiring" class="en-content">Electrical Wiring</option>
+            <option value="lights" class="en-content">Light Installation</option>
+            <option value="fan-tv" class="en-content">Fan / TV Repair</option>
+            <option value="emergency" class="en-content">🚨 Emergency Service</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label en-content">Problem Description</label>
+          <label class="form-label ar-content" style="display:none;">وصف المشكلة</label>
+          <textarea class="form-control" id="fDesc" placeholder="Briefly describe the issue or what you need..."></textarea>
+        </div>
+
+        <button class="btn-submit" onclick="submitForm()">
+          <span id="submitText">
+            <span class="en-content">Submit Request →</span>
+            <span class="ar-content" style="display:none;">إرسال الطلب ←</span>
+          </span>
+        </button>
+      </div>
+
+      <div class="form-success" id="formSuccess">
+        <div class="success-icon">✅</div>
+        <div class="success-title en-content">Request Received!</div>
+        <div class="success-title ar-content" style="display:none;">تم استلام طلبك!</div>
+        <p class="success-desc en-content">Our team will call you back within 30 minutes to confirm your service booking.</p>
+        <p class="success-desc ar-content" style="display:none;">سيتصل بك فريقنا خلال 30 دقيقة لتأكيد حجز خدمتك.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section id="location" class="section-pad">
+  <div class="location-grid">
+    <div class="map-frame reveal">
+      <div class="map-placeholder">
+        <div class="map-pin">
+          <div class="map-pin-pulse"></div>
+          <div class="map-pin-pulse"></div>
+          <div class="map-pin-pulse"></div>
+          <div class="map-pin-icon">📍</div>
+          <div class="map-label en-content">Arctic Cool — Saudi Arabia</div>
+          <div class="map-label ar-content" style="display:none;">ارتك كول — المملكة العربية السعودية</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="location-content reveal reveal-delay-2">
+      <div class="section-header">
+        <span class="section-label en-content">Service Coverage</span>
+        <span class="section-label ar-content" style="display:none;">نطاق الخدمة</span>
+        <h2 class="section-title">
+          <span class="en-content">We Serve <span class="accent">All of Saudi Arabia</span></span>
+          <span class="ar-content" style="display:none;">نخدم <span class="accent">كامل المملكة</span></span>
+        </h2>
+        <p class="section-desc en-content">Our teams are strategically stationed across the Kingdom for the fastest possible response times.</p>
+        <p class="section-desc ar-content" style="display:none;">فرقنا منتشرة استراتيجياً في أنحاء المملكة لأسرع وقت استجابة ممكن.</p>
+      </div>
+
+      <div class="cities-grid">
+        <div class="city-chip"><span class="icon">🌆</span><span class="en-content">Riyadh</span><span class="ar-content" style="display:none;">الرياض</span></div>
+        <div class="city-chip"><span class="icon">🌊</span><span class="en-content">Jeddah</span><span class="ar-content" style="display:none;">جدة</span></div>
+        <div class="city-chip"><span class="icon">🕌</span><span class="en-content">Mecca</span><span class="ar-content" style="display:none;">مكة المكرمة</span></div>
+        <div class="city-chip"><span class="icon">🕌</span><span class="en-content">Medina</span><span class="ar-content" style="display:none;">المدينة المنورة</span></div>
+        <div class="city-chip"><span class="icon">⚗️</span><span class="en-content">Dammam</span><span class="ar-content" style="display:none;">الدمام</span></div>
+        <div class="city-chip"><span class="icon">🏖️</span><span class="en-content">Al Khobar</span><span class="ar-content" style="display:none;">الخبر</span></div>
+        <div class="city-chip"><span class="icon">🏔️</span><span class="en-content">Taif</span><span class="ar-content" style="display:none;">الطائف</span></div>
+        <div class="city-chip"><span class="icon">🏙️</span><span class="en-content">Tabuk</span><span class="ar-content" style="display:none;">تبوك</span></div>
+      </div>
+
+      <div class="coverage-note">
+        <span>📡</span>
+        <span class="en-content">Don't see your city? Call us — we likely cover your area too or can arrange a visit.</span>
+        <span class="ar-content" style="display:none;">لا ترى مدينتك؟ اتصل بنا — على الأرجح نغطي منطقتك أيضاً أو يمكننا ترتيب زيارة.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section-pad">
+  <div class="contact-inner">
+    <div class="contact-emergency reveal">
+      <div class="emergency-label">
+        <span>🚨</span>
+        <span class="en-content">Emergency Line</span>
+        <span class="ar-content" style="display:none;">خط الطوارئ</span>
+      </div>
+      <h2 class="emergency-title">
+        <span class="en-content">AC Emergency? Call Us <span>Right Now</span></span>
+        <span class="ar-content" style="display:none;">تعطل تكييف؟ اتصل بنا <span>الآن</span></span>
+      </h2>
+      <p class="emergency-desc en-content">
+        Don't suffer in the heat. Our emergency response team is available around the clock and will reach you within 60 minutes anywhere in the Kingdom.
+      </p>
+      <p class="emergency-desc ar-content" style="display:none;">
+        لا تعاني من الحر. فريق الاستجابة الطارئة لدينا متاح على مدار الساعة وسيصل إليك خلال 60 دقيقة في أي مكان بالمملكة.
+      </p>
+      <div class="emergency-buttons">
+        <a href="tel:+966500000000" class="btn-emergency-call">
+          <span>📞</span>
+          <span class="en-content">+966 50 000 0000 — Call Now</span>
+          <span class="ar-content" style="display:none;">+966 50 000 0000 — اتصل الآن</span>
+        </a>
+        <a href="https://wa.me/966500000000" class="btn-whatsapp" target="_blank">
+          <span>💬</span>
+          <span class="en-content">WhatsApp Emergency</span>
+          <span class="ar-content" style="display:none;">واتساب طوارئ</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="contact-cards">
+      <div class="contact-card reveal reveal-delay-1">
+        <span class="contact-card-icon">📞</span>
+        <div class="contact-card-title en-content">Phone</div>
+        <div class="contact-card-title ar-content" style="display:none;">هاتف</div>
+        <div class="contact-card-value">+966 50 000 0000</div>
+        <div class="contact-card-sub en-content">Available 24/7</div>
+        <div class="contact-card-sub ar-content" style="display:none;">متاح 24/7</div>
+      </div>
+
+      <div class="contact-card reveal reveal-delay-2">
+        <span class="contact-card-icon">💬</span>
+        <div class="contact-card-title en-content">WhatsApp</div>
+        <div class="contact-card-title ar-content" style="display:none;">واتساب</div>
+        <div class="contact-card-value">+966 50 000 0000</div>
+        <div class="contact-card-sub en-content">Instant Response</div>
+        <div class="contact-card-sub ar-content" style="display:none;">رد فوري</div>
+      </div>
+
+      <div class="contact-card reveal reveal-delay-3">
+        <span class="contact-card-icon">✉️</span>
+        <div class="contact-card-title en-content">Email</div>
+        <div class="contact-card-title ar-content" style="display:none;">البريد الإلكتروني</div>
+        <div class="contact-card-value">info@arcticcool.sa</div>
+        <div class="contact-card-sub en-content">Reply within 2 hours</div>
+        <div class="contact-card-sub ar-content" style="display:none;">رد خلال ساعتين</div>
+      </div>
+
+      <div class="contact-card reveal reveal-delay-4">
+        <span class="contact-card-icon">🕐</span>
+        <div class="contact-card-title en-content">Hours</div>
+        <div class="contact-card-title ar-content" style="display:none;">ساعات العمل</div>
+        <div class="contact-card-value en-content">24 Hours / 7 Days</div>
+        <div class="contact-card-value ar-content" style="display:none;">24 ساعة / 7 أيام</div>
+        <div class="contact-card-sub en-content">Emergency: Always Open</div>
+        <div class="contact-card-sub ar-content" style="display:none;">طوارئ: مفتوح دائماً</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#" class="logo">
+        <div class="logo-icon">❄️</div>
+        <div class="logo-text">ARCTIC <span>COOL</span></div>
+      </a>
+      <p class="footer-tagline en-content">Saudi Arabia's trusted HVAC and electrical service professionals. Fast, certified, and guaranteed.</p>
+      <p class="footer-tagline ar-content" style="display:none;">متخصصو خدمات التكييف والكهرباء الموثوقون في المملكة العربية السعودية. سريعون، معتمدون، ومضمونون.</p>
+      <div class="social-links">
+        <a href="#" class="social-btn">𝕏</a>
+        <a href="#" class="social-btn">in</a>
+        <a href="#" class="social-btn">📘</a>
+        <a href="#" class="social-btn">📸</a>
+      </div>
+    </div>
+
+    <div>
+      <div class="footer-col-title en-content">Services</div>
+      <div class="footer-col-title ar-content" style="display:none;">الخدمات</div>
+      <ul class="footer-links">
+        <li><a href="#services" class="en-content">AC Repair</a><a href="#services" class="ar-content" style="display:none;">إصلاح التكييف</a></li>
+        <li><a href="#services" class="en-content">AC Installation</a><a href="#services" class="ar-content" style="display:none;">تركيب التكييف</a></li>
+        <li><a href="#services" class="en-content">Gas Refill</a><a href="#services" class="ar-content" style="display:none;">شحن الغاز</a></li>
+        <li><a href="#services" class="en-content">Electrical Wiring</a><a href="#services" class="ar-content" style="display:none;">تمديد الأسلاك</a></li>
+        <li><a href="#services" class="en-content">Emergency Service</a><a href="#services" class="ar-content" style="display:none;">خدمة طوارئ</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="footer-col-title en-content">Company</div>
+      <div class="footer-col-title ar-content" style="display:none;">الشركة</div>
+      <ul class="footer-links">
+        <li><a href="#about" class="en-content">About Us</a><a href="#about" class="ar-content" style="display:none;">من نحن</a></li>
+        <li><a href="#work" class="en-content">Our Work</a><a href="#work" class="ar-content" style="display:none;">أعمالنا</a></li>
+        <li><a href="#testimonials" class="en-content">Reviews</a><a href="#testimonials" class="ar-content" style="display:none;">التقييمات</a></li>
+        <li><a href="#booking" class="en-content">Book Service</a><a href="#booking" class="ar-content" style="display:none;">احجز خدمة</a></li>
+        <li><a href="#contact" class="en-content">Contact</a><a href="#contact" class="ar-content" style="display:none;">تواصل معنا</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="footer-col-title en-content">Cities</div>
+      <div class="footer-col-title ar-content" style="display:none;">المدن</div>
+      <ul class="footer-links">
+        <li><a href="#" class="en-content">Riyadh</a><a href="#" class="ar-content" style="display:none;">الرياض</a></li>
+        <li><a href="#" class="en-content">Jeddah</a><a href="#" class="ar-content" style="display:none;">جدة</a></li>
+        <li><a href="#" class="en-content">Dammam</a><a href="#" class="ar-content" style="display:none;">الدمام</a></li>
+        <li><a href="#" class="en-content">Mecca</a><a href="#" class="ar-content" style="display:none;">مكة المكرمة</a></li>
+        <li><a href="#" class="en-content">Medina</a><a href="#" class="ar-content" style="display:none;">المدينة المنورة</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2025 Arctic Cool HVAC & Electrical Services. All rights reserved.</span>
+    <span class="en-content">Serving Saudi Arabia with Pride 🇸🇦</span>
+    <span class="ar-content" style="display:none;">نخدم المملكة العربية السعودية بفخر 🇸🇦</span>
+  </div>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/966500000000" class="fab-whatsapp" target="_blank" title="WhatsApp">
+  <div class="fab-pulse"></div>
+  💬
+</a>
+
+<!-- STICKY CALL BAR (mobile) -->
+<div class="sticky-call-bar">
+  <a href="tel:+966500000000" class="sticky-bar-call en-content">📞 Call Now</a>
+  <a href="tel:+966500000000" class="sticky-bar-call ar-content" style="display:none;">📞 اتصل الآن</a>
+  <a href="https://wa.me/966500000000" class="sticky-bar-wa en-content" target="_blank">💬 WhatsApp</a>
+  <a href="https://wa.me/966500000000" class="sticky-bar-wa ar-content" style="display:none;" target="_blank">💬 واتساب</a>
+</div>
+
+<script>
+// ============================
+// PRELOADER
+// ============================
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('preloader').classList.add('hidden');
+    initReveal();
+    createParticles();
+    startTyping();
+  }, 2400);
+});
+
+// ============================
+// LANGUAGE SYSTEM
+// ============================
+const enPhrases = ['Fast Repair', '24/7 Emergency', 'Trusted in KSA', 'Expert Technicians', 'Affordable Service'];
+const arPhrases = ['إصلاح سريع', 'طوارئ 24/7', 'موثوق في المملكة', 'فنيون خبراء', 'خدمة بأسعار معقولة'];
+
+let currentLang = localStorage.getItem('lang') || 'en';
+
+function applyLang() {
+  const isAr = currentLang === 'ar';
+  const body = document.body;
+  
+  if (isAr) {
+    body.classList.add('rtl');
+    body.setAttribute('dir', 'rtl');
+    body.setAttribute('lang', 'ar');
+    document.getElementById('langLabel').textContent = 'English';
+  } else {
+    body.classList.remove('rtl');
+    body.setAttribute('dir', 'ltr');
+    body.setAttribute('lang', 'en');
+    document.getElementById('langLabel').textContent = 'العربية';
+  }
+
+  // Toggle all en/ar elements
+  document.querySelectorAll('.en-content').forEach(el => {
+    el.style.display = isAr ? 'none' : '';
+  });
+  document.querySelectorAll('.ar-content').forEach(el => {
+    el.style.display = isAr ? '' : 'none';
+  });
+}
+
+function toggleLang() {
+  currentLang = currentLang === 'en' ? 'ar' : 'en';
+  localStorage.setItem('lang', currentLang);
+  
+  // Fade transition
+  document.body.style.opacity = '0.85';
+  document.body.style.transition = 'opacity 0.2s';
+  setTimeout(() => {
+    applyLang();
+    restartTyping();
+    document.body.style.opacity = '1';
+  }, 200);
+}
+
+// Init language
+applyLang();
+
+// ============================
+// TYPING ANIMATION
+// ============================
+let typingIndex = 0;
+let charIndex = 0;
+let typingDir = 1;
+let typingTimer;
+
+function getPhrases() {
+  return currentLang === 'ar' ? arPhrases : enPhrases;
+}
+
+function startTyping() {
+  typeChar();
+}
+
+function restartTyping() {
+  clearTimeout(typingTimer);
+  typingIndex = 0;
+  charIndex = 0;
+  typingDir = 1;
+  document.getElementById('typingText').textContent = '';
+  typeChar();
+}
+
+function typeChar() {
+  const phrases = getPhrases();
+  const current = phrases[typingIndex];
+  const el = document.getElementById('typingText');
+  
+  if (typingDir === 1) {
+    el.textContent = current.substring(0, charIndex + 1);
+    charIndex++;
+    if (charIndex >= current.length) {
+      typingDir = -1;
+      typingTimer = setTimeout(typeChar, 1800);
+    } else {
+      typingTimer = setTimeout(typeChar, 80);
+    }
+  } else {
+    el.textContent = current.substring(0, charIndex);
+    charIndex--;
+    if (charIndex < 0) {
+      typingDir = 1;
+      typingIndex = (typingIndex + 1) % phrases.length;
+      charIndex = 0;
+      typingTimer = setTimeout(typeChar, 400);
+    } else {
+      typingTimer = setTimeout(typeChar, 45);
+    }
+  }
+}
+
+// ============================
+// PARTICLES
+// ============================
+function createParticles() {
+  const container = document.getElementById('heroParticles');
+  for (let i = 0; i < 30; i++) {
+    const p = document.createElement('div');
+    p.classList.add('particle');
+    const size = Math.random() * 4 + 1;
+    p.style.cssText = `
+      width:${size}px;height:${size}px;
+      left:${Math.random()*100}%;
+      --dur:${7+Math.random()*8}s;
+      --delay:${Math.random()*6}s;
+      --op:${0.2+Math.random()*0.4};
+      background:${Math.random()>0.7?'var(--fire)':'var(--ice)'};
+    `;
+    container.appendChild(p);
+  }
+}
+
+// ============================
+// SCROLL REVEAL
+// ============================
+function initReveal() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+}
+
+// ============================
+// HEADER SCROLL
+// ============================
+window.addEventListener('scroll', () => {
+  const header = document.getElementById('header');
+  header.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// ============================
+// SERVICE CARD 3D TILT
+// ============================
+document.querySelectorAll('[data-tilt]').forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+    const tiltX = (y - 0.5) * 12;
+    const tiltY = (x - 0.5) * -12;
+    card.style.transform = `perspective(800px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(1.02)`;
+    card.style.setProperty('--mx', `${x*100}%`);
+    card.style.setProperty('--my', `${y*100}%`);
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+  });
+});
+
+// ============================
+// TESTIMONIALS SLIDER
+// ============================
+let currentSlide = 0;
+const totalSlides = 3;
+
+function moveSlider(dir) {
+  currentSlide = (currentSlide + dir + totalSlides) % totalSlides;
+  updateSlider();
+}
+function goToSlide(i) {
+  currentSlide = i;
+  updateSlider();
+}
+function updateSlider() {
+  document.getElementById('sliderTrack').style.transform = `translateX(-${currentSlide*100}%)`;
+  document.querySelectorAll('.slider-dot').forEach((d, i) => {
+    d.classList.toggle('active', i === currentSlide);
+  });
+}
+// Auto-slide
+setInterval(() => moveSlider(1), 5000);
+
+// ============================
+// MOBILE NAV
+// ============================
+function toggleMobileNav() {
+  const nav = document.getElementById('mobileNav');
+  const ham = document.getElementById('hamburger');
+  nav.classList.toggle('open');
+  ham.classList.toggle('open');
+}
+function closeMobileNav() {
+  document.getElementById('mobileNav').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+}
+
+// ============================
+// BOOKING FORM
+// ============================
+function submitForm() {
+  const name = document.getElementById('fName').value.trim();
+  const phone = document.getElementById('fPhone').value.trim();
+  const location = document.getElementById('fLocation').value.trim();
+
+  let valid = true;
+
+  const grpName = document.getElementById('grp-name');
+  const grpPhone = document.getElementById('grp-phone');
+
+  grpName.classList.remove('error');
+  grpPhone.classList.remove('error');
+
+  if (!name) { grpName.classList.add('error'); valid = false; }
+  if (!phone || phone.length < 8) { grpPhone.classList.add('error'); valid = false; }
+
+  if (!valid) return;
+
+  const btn = document.querySelector('.btn-submit');
+  btn.classList.add('loading');
+  const span = document.getElementById('submitText');
+  span.querySelector('.en-content') && (span.querySelector('.en-content').textContent = 'Sending...');
+  span.querySelector('.ar-content') && (span.querySelector('.ar-content').textContent = 'جاري الإرسال...');
+
+  setTimeout(() => {
+    document.getElementById('bookingForm').style.display = 'none';
+    const success = document.getElementById('formSuccess');
+    success.style.display = 'block';
+  }, 1200);
+}
+
+// Service card glow follows mouse (for non-tilt cards)
+document.querySelectorAll('.service-card').forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    card.style.setProperty('--mx', `${x}%`);
+    card.style.setProperty('--my', `${y}%`);
+  });
+});
+
+// Smooth anchor scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+// Init reveal for elements already in view
+setTimeout(initReveal, 100);
+</script>
+</body>
+</html>
